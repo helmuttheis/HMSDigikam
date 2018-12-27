@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2BAD3594-8C6D-431D-94FD-C686F324FBAB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DKApp</RootNamespace>
+    <AssemblyName>DKApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DKMonoService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="lightgallery\dist\fonts\lg.eot" />
+    <None Include="lightgallery\dist\fonts\lg.ttf" />
+    <None Include="lightgallery\dist\fonts\lg.woff" />
+    <None Include="lightgallery\dk\index.js.map" />
+    <None Include="lightgallery\dk\lg.js.map" />
+    <None Include="lightgallery\dk\status.js.map" />
+    <None Include="StartDKApp.sh" />
+    <None Include="tsconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DKLib\DKLib.csproj">
+      <Project>{0d8221b1-7e2f-4bc5-9360-668c9ec803c4}</Project>
+      <Name>DKLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lightgallery\dist\css\lg-fb-comment-box.css" />
+    <Content Include="lightgallery\dist\css\lg-fb-comment-box.min.css" />
+    <Content Include="lightgallery\dist\css\lg-transitions.css" />
+    <Content Include="lightgallery\dist\css\lg-transitions.min.css" />
+    <Content Include="lightgallery\dist\css\lightgallery.css" />
+    <Content Include="lightgallery\dist\css\lightgallery.min.css" />
+    <Content Include="lightgallery\dist\fonts\lg.svg" />
+    <Content Include="lightgallery\dist\img\loading.gif" />
+    <Content Include="lightgallery\dist\img\video-play.png" />
+    <Content Include="lightgallery\dist\img\vimeo-play.png" />
+    <Content Include="lightgallery\dist\img\youtube-play.png" />
+    <Content Include="lightgallery\dist\js\lightgallery-all.js" />
+    <Content Include="lightgallery\dist\js\lightgallery-all.min.js" />
+    <Content Include="lightgallery\dist\js\lightgallery.js" />
+    <Content Include="lightgallery\dist\js\lightgallery.min.js" />
+    <Content Include="lightgallery\dk\EmbyStyle.css" />
+    <Content Include="lightgallery\dk\img\baseline-search-24px-white.svg" />
+    <Content Include="lightgallery\dk\img\logowhite.png" />
+    <Content Include="lightgallery\dk\index.html" />
+    <Content Include="lightgallery\dk\index.js" />
+    <Content Include="lightgallery\dk\jquery.js" />
+    <Content Include="lightgallery\dk\lg.css" />
+    <Content Include="lightgallery\dk\lg.js" />
+    <Content Include="lightgallery\dk\status.js" />
+    <Content Include="lightgallery\lib\bootstrap-grid.min.css" />
+    <Content Include="lightgallery\lib\bootstrap.bundle.min.js" />
+    <Content Include="lightgallery\lib\jquery.mousewheel.min.js" />
+    <Content Include="lightgallery\lib\lg.png" />
+    <Content Include="lightgallery\lib\picturefill.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="lightgallery\dk\index.ts" />
+    <TypeScriptCompile Include="lightgallery\dk\lg.ts" />
+    <TypeScriptCompile Include="lightgallery\dk\status.ts" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

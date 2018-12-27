@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>V48 DigiKam</title>
+    <link href="../dist/css/lightgallery.css" rel="stylesheet">
+    <link href="../lib/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="./lg.css" rel="stylesheet">
+    <link href="./EmbyStyle.css" rel="stylesheet">
+
+    <script src="./jquery.js"></script>
+    <script src="../lib/bootstrap.bundle.min.js"></script>
+    <script src="./lg.js"></script>
+    <script src="./status.js"></script>
+    <script src="./index.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="headerTabs">
+            <div class="embyBack">
+                <a href="http://diskstation:8096/web/home.html">
+                    <div style="padding-right: 8px">Zur&uuml;ck zu</div>
+                    <img Style="width: auto; height: 25px" src="img/logowhite.png" />
+                </a>
+            </div>
+            <div id="headerButton" class="headerButton">
+                <button id="headerButtonHome" class="btn headerTabsButton-active" onclick="btnClear_Click()">Home</button>
+                <button id="headerButtonAlben" class="btn" onclick="btnFolder_Click()">Alben</button>
+                <button id="headerButtonTags" class="btn" onclick="btnTags_Click()">Tags</button>
+            </div>
+            <div class="headerSearch">
+                <input type="text" name="tbSearch" class="enter" value="" id="tbSearch" placeholder="Suche..." />
+                <button id="tbSearchSubmit" onclick="btnSearch_Click()">Suchen</button>
+            </div>
+        </div>
+    </div>
+    <div>
+
+        <div id="status">
+            Status
+        </div>
+        <div class="bilder-gallery">
+            <ul id="lightgallery" class="list-unstyled"></ul>
+        </div>
+        <div class="album-gallery">
+            <ul id="albumlist" class="list-unstyled"></ul>
+        </div>
+        <div class="tags-gallery">
+            <ul id="tagslist" class="list-unstyled"></ul>
+        </div>
+    </div>
+
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+
+    <script src="../lib/picturefill.min.js"></script>
+    <script src="../dist/js/lightgallery-all.min.js"></script>
+    <script src="../lib/jquery.mousewheel.min.js"></script>
+</body>
+</html>

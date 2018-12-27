@@ -1,0 +1,112 @@
+﻿body {
+    margin: 0px;
+    width: 100%;
+    font-family: Tahoma;
+    background-color: #141414;
+}
+.header {
+    background-color: #1a1a1a;
+    color: rgba(255, 255, 255, .7);
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+    display: inline-flex;
+    font-size: 20px;
+}
+.embyBack {
+    width: 33%;
+    height: 100%;
+    display: flex;
+    cursor: pointer;
+    justify-content: flex-start;
+    align-items: center;
+}
+.embyBack > div {
+    height: 100%;
+}
+.embyBack > div > button {
+    height: 100%;
+    vertical-align: central; 
+}
+.headerTabs {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+.headerButton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 33%;
+}
+.headerButton > button {
+    margin: 0 20px;
+}
+.headerSearch {
+    position: relative;
+    float: right;
+    width: 33%;
+    box-sizing: border-box;
+}
+.headerSearch > button {
+    float: right;
+}
+.headerSearch > input {
+    font-size: 20px;
+    float: right;
+    box-sizing: border-box;
+    background-image: url('img/baseline-search-24px-white.svg');
+    background-size: 35px;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, .1);
+    background-position: 5px center;
+    padding: 12px 10px 12px 43px;
+    border-style: solid;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, .05);
+    color: rgba(255, 255, 255, .7);
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+.headerSearch > input:focus {
+    background-color: rgba(255, 255, 255, .4);
+    border-color: rgba(255, 255, 255, .3);
+    width: 100%;
+}
+.headerSearch > button {
+    display: none;
+}
+.headerTabsButton-active {
+    color: #52B54B;
+}
+button {
+    border: none;
+    background-color: transparent;
+    margin: 5px 10px;
+    text-align: center;
+    text-decoration: #52B54B;
+    display: inline-flex;
+    color: rgba(255, 255, 255, .7);
+    cursor: pointer;
+    padding: 0;
+    font-size: 20px;
+}
+.embyBack > a {
+    border: none;
+    background-color: transparent;
+    margin: 5px 10px;
+    text-align: center;
+    text-decoration: #52B54B;
+    display: inline-flex;
+    color: rgba(255, 255, 255, .7);
+    cursor: pointer;
+    padding: 0 15px 0 0;
+    font-size: 20px;
+}
+/*button:active {
+    margin: 5px 10px;
+}*/
