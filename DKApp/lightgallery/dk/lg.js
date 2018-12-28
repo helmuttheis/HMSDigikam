@@ -153,7 +153,6 @@ var lg = /** @class */ (function () {
         var $ulElem = $(selector);
         if ($ulElem) {
             $ulElem.empty();
-            ;
             $.getJSON("/tag?tagid=" + tagid, function (data) {
                 var items = data.json;
                 if (items.error) {
