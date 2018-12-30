@@ -199,6 +199,113 @@ background-color: rgba(0, 0, 0, 0.5);
     border: 3px solid #04070a;
 }
 
+.testtesttest > ul {
+    margin: 0;
+    padding: 10px 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    float: left;
+    list-style-type: none;
+}
+
+.testtesttest > ul > li {
+    height: 160px;
+    width: 240px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, .05);
+}
+
+.testtesttest > ul > li > .tag_preview {
+    height: 85%;
+    width: 100%;
+    text-align: center;
+}
+
+.testtesttest > ul > li > .tag_view {
+    height: 15%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, .6);
+    color: black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-align: right;
+}
+
+.testtesttest > ul > li > .tag_view > button{
+    margin-top: 2px;
+    color: black;
+    font-size: 16px;
+}
+
+.testtesttest > ul > li > .tag_view > button > i{
+    margin-top: 3px;
+    font-size: 14px;
+}
+
+.tags-gallery > ul {
+    margin: 0;
+    padding: 10px 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    float: left;
+    list-style-type: none;
+}
+
+.tags-gallery > ul > li {
+    height: 160px;
+    width: 240px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, .05);
+    margin: 5px 0;
+}
+
+.tags-gallery > ul > li > .tag_preview {
+    height: 85%;
+    width: 100%;
+    text-align: center;
+}
+
+.tags-gallery > ul > li > .tag_view {
+    height: 15%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, .6);
+    color: black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-align: right;
+}
+
+.tags-gallery > ul > li > .tag_view > button {
+    margin-top: 2px;
+    color: black;
+    font-size: 16px;
+}
+
+.tags-gallery > ul > li > .tag_view > button > i {
+    margin-top: 3px;
+    font-size: 14px;
+}
+
+#loadingOverlay {
+    background-color: #141414;
+}
+
+.visible {
+    visibility: hidden;
+}
+
+.invisible {
+    visibility: visible;
+}
+
 .home .demo-gallery {
     padding-bottom: 80px;
 }

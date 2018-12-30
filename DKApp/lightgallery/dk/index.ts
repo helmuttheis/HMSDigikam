@@ -4,13 +4,13 @@ var glbStatus = new log();
 
 function btnClear_Click() {
     var lgInst = new lg();
-    lgInst.lgClearAlbumList('#albumlist');
-    lgInst.lgClearImages('#lightgallery');
-    lgInst.lgClearAlbumList('#tagslist');
+    lgInst.lgClear('#albumlist');
+    lgInst.lgClear('#lightgallery');
+    lgInst.lgClear('#tagslist');
 }
 function btnSearch_Click() {
     var lgInst = new lg();
-    lgInst.lgClearAlbumList('#albumlist');
+    lgInst.lgClear('#albumlist');
     lgInst.lgFillImages('#lightgallery', '#tbSearch', function (msg) {
         glbStatus.statusDone(msg);
         (<any>$('#lightgallery')).lightGallery();
@@ -20,8 +20,8 @@ function btnSearch_Click() {
 function btnSearchAlbum(elem) {
     var lgInst = new lg();
     var album = $(elem).attr('data-responsive');
-    lgInst.lgClearAlbumList('#tagslist');
-    lgInst.lgClearAlbumList('#albumlist');
+    lgInst.lgClear('#tagslist');
+    lgInst.lgClear('#albumlist');
     lgInst.lgFillAlbumImages('#lightgallery', album, function (msg) {
         glbStatus.statusDone(msg);
         (<any>$('#lightgallery')).lightGallery();
@@ -30,8 +30,8 @@ function btnSearchAlbum(elem) {
 }
 function btnFolder_Click() {
     var lgInst = new lg();
-    lgInst.lgClearImages('#lightgallery');
-    lgInst.lgClearAlbumList('#tagslist');
+    lgInst.lgClear('#lightgallery');
+    lgInst.lgClear('#tagslist');
     lgInst.lgFillAlbumList('#albumlist', function (msg) {
         glbStatus.statusDone(msg);
     });
@@ -41,8 +41,8 @@ function btnTags_Click() {
     var lgInst = new lg();
     var tagid = "0";
     // this must be the previously selected id
-    lgInst.lgClearAlbumList('#albumlist');
-    lgInst.lgClearImages('#lightgallery');
+    lgInst.lgClear('#albumlist');
+    lgInst.lgClear('#lightgallery');
     lgInst.lgFillTagList('#tagslist', tagid, function (msg) {
         glbStatus.statusDone(msg);
     });
@@ -52,7 +52,7 @@ function btnSearchTag_Click(elem) {
     var lgInst = new lg();
     var tagid = $(elem).attr('data-responsive');
     // this must be the previously selected id
-    lgInst.lgClearImages('#lightgallery');
+    lgInst.lgClear('#lightgallery');
     lgInst.lgFillTagList('#tagslist', tagid, function (msg) {
         glbStatus.statusDone(msg);
 
@@ -63,13 +63,19 @@ function btnShowTag_Click(elem) {
     var lgInst = new lg();
     var tagid = $(elem).attr('data-responsive');
     // this must be the previously selected id
-    lgInst.lgClearAlbumList('#albumlist');
+    lgInst.lgClear('#albumlist');
+    lgInst.lgClear('#tagslist');
     lgInst.lgFillTag('#lightgallery', tagid, function (msg) {
         glbStatus.statusDone(msg);
         (<any>$('#lightgallery')).lightGallery();
     });
     glbStatus.statusStart('searching ...');
 }
+function cbOnLoad() {
+    var lgInst = new lg();
+    lgInst.lgImgOnLoad();
+}
+
 var bFirstRun = true;
 $(document).ready(function () {
     if (bFirstRun === true) {

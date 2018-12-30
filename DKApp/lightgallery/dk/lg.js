@@ -1,4 +1,4 @@
-/// <reference path="../../node_modules/@types/jquery/index.d.ts"/>
+// <reference path="../../node_modules/@types/jquery/index.d.ts"/>
 var lg = /** @class */ (function () {
     function lg() {
     }
@@ -20,7 +20,7 @@ var lg = /** @class */ (function () {
             // elem.style.width = value * 100 / max + '%';
         }, 0);
     };
-    lg.prototype.lgClearImages = function (selector) {
+    lg.prototype.lgClear = function (selector) {
         var $ulElem = $(selector);
         if ($ulElem) {
             $ulElem.empty();
@@ -39,6 +39,7 @@ var lg = /** @class */ (function () {
                 }
                 else {
                     var nr = 0;
+                    ImgLoaded = 0;
                     $.each(items.Photos, function (index, item) {
                         var thumb_name = "/thumb" + item.Image.replace(/ /gi, "%20");
                         var img_name = "/photo" + item.Image.replace(/ /gi, "%20"); //  = "img/" + (nr % 4 + 1) + "-1600.jpg";
@@ -47,7 +48,7 @@ var lg = /** @class */ (function () {
                         var data_src = img_name;
                         var data_sub_html = "<h4>" + item.Image + "</h4>"; // <p></p>";
                         var src = thumb_name; // "img/thumb-4.jpg";
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '"></a></li>');
+                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()"></a></li>');
                     });
                     cb(items.TotalRecordCount + ' found');
                 }
@@ -68,6 +69,7 @@ var lg = /** @class */ (function () {
                 else {
                     that.progessStart();
                     var nr = 0;
+                    ImgLoaded = 0;
                     $.each(items.Photos, function (index, item) {
                         var thumb_name = "/thumb" + item.Image.replace(/ /gi, "%20");
                         var img_name = "/photo" + item.Image.replace(/ /gi, "%20"); //  = "img/" + (nr % 4 + 1) + "-1600.jpg";
@@ -76,7 +78,7 @@ var lg = /** @class */ (function () {
                         var data_src = img_name;
                         var data_sub_html = "<h4>" + item.Image + "</h4>"; // <p></p>";
                         var src = thumb_name; // "img/thumb-4.jpg";
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '"></a></li>');
+                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()"></a></li>');
                         that.progressStep(nr, items.TotalRecordCount);
                         if (nr >= items.TotalRecordCount) {
                             that.progessStop();
@@ -85,12 +87,6 @@ var lg = /** @class */ (function () {
                     cb(items.TotalRecordCount + ' found');
                 }
             });
-        }
-    };
-    lg.prototype.lgClearAlbumList = function (selector) {
-        var $ulElem = $(selector);
-        if ($ulElem) {
-            $ulElem.empty();
         }
     };
     lg.prototype.lgFillAlbumList = function (selector, cb) {
@@ -110,17 +106,12 @@ var lg = /** @class */ (function () {
                         var data_responsive = href; //  "img/4-375.jpg 375, img/4-480.jpg 480, img/4.jpg 800";
                         var data_src = href;
                         var data_sub_html = "<h4>" + item.RelativePath + "</h4><p> </p>";
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '"  data-sub-html="' + data_sub_html + '" ><button onclick="btnSearchAlbum(this)" data-responsive="' + data_responsive + '" >' + data_responsive + '</button></li>');
+                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '"  data-sub-html="' + data_sub_html + '" >' +
+                            '<button onclick = "btnSearchAlbum(this)" data - responsive="' + data_responsive + '" > ' + data_responsive + ' </button></li> ');
                     });
                     cb(items.TotalRecordCount + ' found');
                 }
             });
-        }
-    };
-    lg.prototype.lgClearTagList = function (selector) {
-        var $ulElem = $(selector);
-        if ($ulElem) {
-            $ulElem.empty();
         }
     };
     lg.prototype.lgFillTagList = function (selector, tagid, cb) {
@@ -139,10 +130,18 @@ var lg = /** @class */ (function () {
                         nr++;
                         var data_responsive = href; //  "img/4-375.jpg 375, img/4-480.jpg 480, img/4.jpg 800";
                         var data_src = href;
-                        var data_sub_html = "<h4>" + item.name + "</h4><p> </p>";
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '"  data-sub-html="' + data_sub_html + '" >' +
+                        var data_sub_html = "<h4>" + item.name + "</h4>";
+                        var data_image = "https://via.placeholder.com/240x160/262626";
+                        /* $ulElem.append('<li class="" data-responsive="' + data_responsive + '"  data-sub-html="' + data_sub_html + '" >' +
                             '<button onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '" >' + item.name + '</button>' +
-                            '<button onclick="btnShowTag_Click(this)" data-responsive="' + data_responsive + '" >#' + item.name + '</button></li>');
+                            '<button onclick="btnShowTag_Click(this)" data-responsive="' + data_responsive + '" ><i class="fas fa-arrow-right"></i></button></li>');
+                        */
+                        $ulElem.append('<li class= "" data-responsive="' + data_responsive + '" data-sub-html="' + data_sub_html + '"style="background-image: url(' + data_image + ')">' +
+                            '<div class="tag_preview" >' +
+                            '<button onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '">' + item.name + '</button>' +
+                            '</div><div class= "tag_view" >' +
+                            '<button onclick="btnShowTag_Click(this)" data-responsive="' + data_responsive + '"> Bilder anzeigen &nbsp <i class= "fas fa-arrow-right"></i></button>' +
+                            '</div> </li>');
                     });
                     cb(items.TotalRecordCount + ' found');
                 }
@@ -153,6 +152,7 @@ var lg = /** @class */ (function () {
         var $ulElem = $(selector);
         if ($ulElem) {
             $ulElem.empty();
+            ;
             $.getJSON("/tag?tagid=" + tagid, function (data) {
                 var items = data.json;
                 if (items.error) {
@@ -160,6 +160,7 @@ var lg = /** @class */ (function () {
                 }
                 else {
                     var nr = 0;
+                    ImgLoaded = 0;
                     $.each(items.Photos, function (index, item) {
                         var thumb_name = "/thumb" + item.Image.replace(/ /gi, "%20");
                         var img_name = "/photo" + item.Image.replace(/ /gi, "%20");
@@ -168,13 +169,17 @@ var lg = /** @class */ (function () {
                         var data_src = img_name;
                         var data_sub_html = "<h4>" + item.Image + "</h4>"; // <p></p>";
                         var src = thumb_name;
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '"></a></li>');
+                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()"></a></li>');
                     });
                     cb(items.TotalRecordCount + ' found');
                 }
             });
         }
     };
+    lg.prototype.lgImgOnLoad = function () {
+        ImgLoaded++;
+    };
     return lg;
 }());
+var ImgLoaded = 0;
 //# sourceMappingURL=lg.js.map

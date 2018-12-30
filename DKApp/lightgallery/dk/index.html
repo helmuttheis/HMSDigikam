@@ -6,6 +6,7 @@
     <link href="../lib/bootstrap-grid.min.css" rel="stylesheet">
     <link href="./lg.css" rel="stylesheet">
     <link href="./EmbyStyle.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
     <script src="./jquery.js"></script>
     <script src="../lib/bootstrap.bundle.min.js"></script>
@@ -33,24 +34,41 @@
             </div>
         </div>
     </div>
-    <div>
 
-        <div id="status">
-            Status
-        </div>
-        <div class="bilder-gallery">
-            <ul id="lightgallery" class="list-unstyled"></ul>
-        </div>
-        <div class="album-gallery">
-            <ul id="albumlist" class="list-unstyled"></ul>
-        </div>
-        <div class="tags-gallery">
-            <ul id="tagslist" class="list-unstyled"></ul>
-        </div>
-    </div>
+    <div id="loadingOverlay" class="invisible">
+        <div>
 
-    <div id="myProgress">
-        <div id="myBar"></div>
+            <div id="status">
+                Status
+            </div>
+
+            <div class="testtesttest">
+                <ul>
+                    <li class="" data-responsive="76" data-sub-html="<h4>Teneriffa</h4>" style="background-image: url(https://via.placeholder.com/240x160/262626)">
+                        <div class="tag_preview">
+                            <button onclick="btnSearchTag_Click(this)" data-responsive="76">Teneriffa</button>
+                        </div>
+                        <div class="tag_view">
+                            <button onclick="btnShowTag_Click(this)" data-responsive="76">Bilder anzeigen &nbsp <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bilder-gallery">
+                <ul id="lightgallery" class="list-unstyled"></ul>
+            </div>
+            <div class="album-gallery">
+                <ul id="albumlist" class="list-unstyled"></ul>
+            </div>
+            <div class="tags-gallery">
+                <ul id="tagslist" class="list-unstyled"></ul>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="myBar"></div>
+        </div>
     </div>
 
     <script src="../lib/picturefill.min.js"></script>
