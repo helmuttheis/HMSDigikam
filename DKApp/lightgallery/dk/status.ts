@@ -6,8 +6,10 @@ class log {
     }
     statusStart(msg: string) {
         $('#status').text(msg);
+        $('#overlayStatus').text(msg);
     }
     statusDone(msg: string) {
         $('#status').text(msg);
+        $('#overlayStatus').text(msg);
     }
 }

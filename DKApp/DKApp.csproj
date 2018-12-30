@@ -87,12 +87,14 @@
     <Content Include="lightgallery\dk\EmbyStyle.css" />
     <Content Include="lightgallery\dk\img\baseline-search-24px-white.svg" />
     <Content Include="lightgallery\dk\img\logowhite.png" />
+    <Content Include="lightgallery\dk\img\Spinner-1.5s-200px.svg" />
     <Content Include="lightgallery\dk\index.html" />
     <Content Include="lightgallery\dk\index.js" />
     <Content Include="lightgallery\dk\jquery.js" />
     <Content Include="lightgallery\dk\lg.css" />
     <Content Include="lightgallery\dk\lg.js" />
     <Content Include="lightgallery\dk\status.js" />
+    <Content Include="lightgallery\dk\spinner.css" />
     <Content Include="lightgallery\lib\bootstrap-grid.min.css" />
     <Content Include="lightgallery\lib\bootstrap.bundle.min.js" />
     <Content Include="lightgallery\lib\jquery.mousewheel.min.js" />

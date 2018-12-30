@@ -294,16 +294,61 @@ background-color: rgba(0, 0, 0, 0.5);
     font-size: 14px;
 }
 
-#loadingOverlay {
-    background-color: #141414;
-}
-
 .visible {
-    visibility: hidden;
+    display: block;
 }
 
 .invisible {
-    visibility: visible;
+    display: none;
+}
+
+#loadingOverlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #141414;
+    opacity: .9;
+    z-index: 2;
+}
+
+#loadingOverlay > i {
+    color: rgba(255, 255, 255, .6);
+    font-size: 32px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 50px 55px;
+    cursor: pointer;
+}
+
+.overlayCenter {
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto 200px 50px 30px auto;
+    grid-template-areas: "." "spinner" "status" "progress" ".";
+    align-items: center;
+    justify-content: center;
+}
+
+.progress {
+    height: 30px;
+    border-radius: 4px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, .1);
+    overflow: hidden;
+}
+
+.progress > .progressbar {
+    float: left;
+    height: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, .7);
+    font-size: 16px;
 }
 
 .home .demo-gallery {

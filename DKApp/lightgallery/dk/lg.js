@@ -39,7 +39,6 @@ var lg = /** @class */ (function () {
                 }
                 else {
                     var nr = 0;
-                    ImgLoaded = 0;
                     $.each(items.Photos, function (index, item) {
                         var thumb_name = "/thumb" + item.Image.replace(/ /gi, "%20");
                         var img_name = "/photo" + item.Image.replace(/ /gi, "%20"); //  = "img/" + (nr % 4 + 1) + "-1600.jpg";
@@ -48,7 +47,7 @@ var lg = /** @class */ (function () {
                         var data_src = img_name;
                         var data_sub_html = "<h4>" + item.Image + "</h4>"; // <p></p>";
                         var src = thumb_name; // "img/thumb-4.jpg";
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()"></a></li>');
+                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()" onerror="cbOnError()"></a></li>');
                     });
                     cb(items.TotalRecordCount + ' found');
                 }
@@ -69,7 +68,6 @@ var lg = /** @class */ (function () {
                 else {
                     that.progessStart();
                     var nr = 0;
-                    ImgLoaded = 0;
                     $.each(items.Photos, function (index, item) {
                         var thumb_name = "/thumb" + item.Image.replace(/ /gi, "%20");
                         var img_name = "/photo" + item.Image.replace(/ /gi, "%20"); //  = "img/" + (nr % 4 + 1) + "-1600.jpg";
@@ -78,7 +76,7 @@ var lg = /** @class */ (function () {
                         var data_src = img_name;
                         var data_sub_html = "<h4>" + item.Image + "</h4>"; // <p></p>";
                         var src = thumb_name; // "img/thumb-4.jpg";
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()"></a></li>');
+                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()" onerror="cbOnError()"></a></li>');
                         that.progressStep(nr, items.TotalRecordCount);
                         if (nr >= items.TotalRecordCount) {
                             that.progessStop();
@@ -160,7 +158,6 @@ var lg = /** @class */ (function () {
                 }
                 else {
                     var nr = 0;
-                    ImgLoaded = 0;
                     $.each(items.Photos, function (index, item) {
                         var thumb_name = "/thumb" + item.Image.replace(/ /gi, "%20");
                         var img_name = "/photo" + item.Image.replace(/ /gi, "%20");
@@ -169,17 +166,13 @@ var lg = /** @class */ (function () {
                         var data_src = img_name;
                         var data_sub_html = "<h4>" + item.Image + "</h4>"; // <p></p>";
                         var src = thumb_name;
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()"></a></li>');
+                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()" onerror="cbOnError()"></a></li>');
                     });
-                    cb(items.TotalRecordCount + ' found');
+                    cb(items.TotalRecordCount);
                 }
             });
         }
     };
-    lg.prototype.lgImgOnLoad = function () {
-        ImgLoaded++;
-    };
     return lg;
 }());
-var ImgLoaded = 0;
 //# sourceMappingURL=lg.js.map

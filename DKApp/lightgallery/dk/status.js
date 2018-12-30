@@ -4,9 +4,11 @@ var log = /** @class */ (function () {
     }
     log.prototype.statusStart = function (msg) {
         $('#status').text(msg);
+        $('#overlayStatus').text(msg);
     };
     log.prototype.statusDone = function (msg) {
         $('#status').text(msg);
+        $('#overlayStatus').text(msg);
     };
     return log;
 }());

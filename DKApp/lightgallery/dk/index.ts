@@ -1,6 +1,10 @@
 ﻿/// <reference path="./lg.ts"/>
 // import * as $ from 'jquery'
 var glbStatus = new log();
+var ImgToLoad = 0;
+var ImgLoaded = 0;
+var ImgErrored = 0;
+var ImgDone = 0;
 
 function btnClear_Click() {
     var lgInst = new lg();
@@ -9,6 +13,7 @@ function btnClear_Click() {
     lgInst.lgClear('#tagslist');
 }
 function btnSearch_Click() {
+    ClearCount()
     var lgInst = new lg();
     lgInst.lgClear('#albumlist');
     lgInst.lgFillImages('#lightgallery', '#tbSearch', function (msg) {
@@ -18,6 +23,7 @@ function btnSearch_Click() {
     glbStatus.statusStart('searching ...');
 }
 function btnSearchAlbum(elem) {
+    ClearCount()
     var lgInst = new lg();
     var album = $(elem).attr('data-responsive');
     lgInst.lgClear('#tagslist');
@@ -60,20 +66,59 @@ function btnSearchTag_Click(elem) {
     glbStatus.statusStart('searching ...');
 }
 function btnShowTag_Click(elem) {
+    ClearCount()
     var lgInst = new lg();
     var tagid = $(elem).attr('data-responsive');
     // this must be the previously selected id
+    document.getElementById("loadingOverlay").classList.remove('invisible');
+    document.getElementById("loadingOverlay").classList.add('visible');
     lgInst.lgClear('#albumlist');
     lgInst.lgClear('#tagslist');
     lgInst.lgFillTag('#lightgallery', tagid, function (msg) {
-        glbStatus.statusDone(msg);
+        ImgToLoad = msg;
+        glbStatus.statusDone(msg + ' found');
         (<any>$('#lightgallery')).lightGallery();
     });
     glbStatus.statusStart('searching ...');
 }
 function cbOnLoad() {
-    var lgInst = new lg();
-    lgInst.lgImgOnLoad();
+    ImgLoaded++;
+    ImgDone++;
+    document.getElementById("progressbarSuccess").style.width = ImgLoaded / ImgToLoad * 100 + "%";
+    if(ImgDone >= ImgToLoad) {
+        document.getElementById("loadingOverlay").classList.remove('visible');
+        document.getElementById("loadingOverlay").classList.add('invisible');
+        
+    }
+}
+
+function cbOnError() {
+    ImgErrored++;
+    ImgDone++;
+    document.getElementById("progressbarError").style.width = ImgErrored / ImgToLoad * 100 + "%";
+    if(ImgDone >= ImgToLoad) {
+        document.getElementById("loadingOverlay").classList.remove('visible');
+        document.getElementById("loadingOverlay").classList.add('invisible');
+    }
+}
+
+
+function ClearCount() {
+    ImgToLoad = 0;
+    ImgErrored = 0;
+    ImgErrored = 0;
+    ImgDone = 0;
+}
+
+//delete if not needed anymore!!!!
+function btnTest() {
+    document.getElementById("loadingOverlay").classList.remove('invisible');
+    document.getElementById("loadingOverlay").classList.add('visible');
+}
+
+function overlayClose() {
+    document.getElementById("loadingOverlay").classList.remove('visible');
+    document.getElementById("loadingOverlay").classList.add('invisible');
 }
 
 var bFirstRun = true;

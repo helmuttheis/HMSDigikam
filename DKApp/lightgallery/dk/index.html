@@ -7,6 +7,7 @@
     <link href="./lg.css" rel="stylesheet">
     <link href="./EmbyStyle.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="./spinner.css" rel="stylesheet">
 
     <script src="./jquery.js"></script>
     <script src="../lib/bootstrap.bundle.min.js"></script>
@@ -36,8 +37,41 @@
     </div>
 
     <div id="loadingOverlay" class="invisible">
-        <div>
+        <i class="fas fa-times" onclick="overlayClose()"></i>
 
+        <div class="overlayCenter">
+            <div class="lds-css ng-scope" style="width: 200px; height: 200px; grid-area: spinner">
+                <div class="lds-spinner" style="width: 100%; height: 100%">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+
+            <div id="overlayStatus" style="color: white; grid-area:status; text-align:center;">
+                Status
+            </div>
+            <div id="progress" class="progress" style="grid-area: progress">
+                <div id="progressbarSuccess" class="progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="background-color:rgba(0,150,0,.7)">
+
+                </div>
+                <div id="progressbarError" class="progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="background-color:rgba(200,0,0,.7)">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+        <div>
             <div id="status">
                 Status
             </div>
@@ -46,7 +80,7 @@
                 <ul>
                     <li class="" data-responsive="76" data-sub-html="<h4>Teneriffa</h4>" style="background-image: url(https://via.placeholder.com/240x160/262626)">
                         <div class="tag_preview">
-                            <button onclick="btnSearchTag_Click(this)" data-responsive="76">Teneriffa</button>
+                            <button id="StyleTest" onclick="btnTest()" data-responsive="76">Teneriffa</button>
                         </div>
                         <div class="tag_view">
                             <button onclick="btnShowTag_Click(this)" data-responsive="76">Bilder anzeigen &nbsp <i class="fas fa-arrow-right"></i></button>
@@ -69,10 +103,9 @@
         <div id="myProgress">
             <div id="myBar"></div>
         </div>
-    </div>
 
-    <script src="../lib/picturefill.min.js"></script>
-    <script src="../dist/js/lightgallery-all.min.js"></script>
-    <script src="../lib/jquery.mousewheel.min.js"></script>
+        <script src="../lib/picturefill.min.js"></script>
+        <script src="../dist/js/lightgallery-all.min.js"></script>
+        <script src="../lib/jquery.mousewheel.min.js"></script>
 </body>
 </html>
