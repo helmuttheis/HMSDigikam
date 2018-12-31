@@ -66,6 +66,7 @@ namespace HMSMB
         public string pid { get; set; }
 
         public string name { get; set; }
+        public string childcnt { get; set; }
 
         public string ToJSON()
         {
@@ -74,7 +75,8 @@ namespace HMSMB
 
             sb.Append("\"id\":\"" + id + "\",");
             sb.Append("\"pid\":\"" + pid + "\", ");
-            sb.Append("\"name\":\"" + name + "\" ");
+            sb.Append("\"name\":\"" + name + "\", ");
+            sb.Append("\"childcnt\":" + childcnt + " ");
             sb.Append("}");
             return sb.ToString();
         }

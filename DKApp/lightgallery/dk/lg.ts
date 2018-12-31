@@ -157,7 +157,7 @@ class lg {
 
                         $ulElem.append('<li class= "" data-responsive="' + data_responsive + '" data-sub-html="' + data_sub_html + '"style="background-image: url(' + data_image + ')">' + 
                             '<div class="tag_preview" >' +
-                            '<button onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '">' + item.name + '</button>' + 
+                            '<button onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '">' + item.name + '(' + item.childcnt +  ')</button>' + 
                             '</div><div class= "tag_view" >' +
                             '<button onclick="btnShowTag_Click(this)" data-responsive="' + data_responsive + '"> Bilder anzeigen &nbsp <i class= "fas fa-arrow-right"></i></button>' +
                             '</div> </li>'
@@ -212,7 +212,8 @@ interface DBTagList {
 interface DBTag {
     id: string,
     pid: string,
-    name: string
+    name: string,
+    childcnt: number
 }
 
 interface DBAlbumList {
