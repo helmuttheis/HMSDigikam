@@ -88,13 +88,14 @@ class lg {
                         var data_src = img_name;
                         var data_sub_html = "<h4>" + item.Image + "</h4>"; // <p></p>";
                         var src = thumb_name; // "img/thumb-4.jpg";
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()" onerror="cbOnError()"></a></li>');
+                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '">' +
+                            '<a href=""> <img class="img-responsive" src="' + src + '" onload="cbOnLoad()" onerror="cbOnError()"> </a></li > ');
                         that.progressStep(nr, items.TotalRecordCount);
                         if (nr >= items.TotalRecordCount) {
                             that.progessStop();
                         }
                     });
-                    cb(items.TotalRecordCount + ' found');
+                    cb(items.TotalRecordCount);
                 }
             });
         }
@@ -121,7 +122,7 @@ class lg {
                         var data_sub_html = "<h4>" + item.RelativePath + "</h4><p> </p>";
 
                         $ulElem.append('<li class="" data-responsive="' + data_responsive + '"  data-sub-html="' + data_sub_html + '" >' +
-                            '<button onclick = "btnSearchAlbum(this)" data - responsive="' + data_responsive + '" > ' + data_responsive + ' </button></li> ');
+                            '<button onclick = "btnSearchAlbum(this)" data-responsive="' + data_responsive + '" > ' + data_responsive + ' </button></li> ');
                     });
 
                     cb(items.TotalRecordCount + ' found');
@@ -157,14 +158,14 @@ class lg {
 
                         $ulElem.append('<li class= "" data-responsive="' + data_responsive + '" data-sub-html="' + data_sub_html + '"style="background-image: url(' + data_image + ')">' + 
                             '<div class="tag_preview" >' +
-                            '<button onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '">' + item.name + '</button>' + 
+                            '<button onclick="btnShowTag_Click(this)" data-responsive="' + data_responsive + '">' + item.name + '</button>' + 
                             '</div><div class= "tag_view" >' +
-                            '<button onclick="btnShowTag_Click(this)" data-responsive="' + data_responsive + '"> Bilder anzeigen &nbsp <i class= "fas fa-arrow-right"></i></button>' +
+                            '<button onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '"> Tags enzeigen &nbsp <i class= "fas fa-arrow-right"></i></button>' +
                             '</div> </li>'
                         );
                     });
-
-                    cb(items.TotalRecordCount + ' found');
+                    
+                    cb(items.TotalRecordCount);
                 }
             });
         }

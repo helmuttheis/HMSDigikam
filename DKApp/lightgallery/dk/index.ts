@@ -15,24 +15,28 @@ function btnClear_Click() {
 function btnSearch_Click() {
     ClearCount()
     var lgInst = new lg();
+    overlayOpen();
     lgInst.lgClear('#albumlist');
     lgInst.lgFillImages('#lightgallery', '#tbSearch', function (msg) {
-        glbStatus.statusDone(msg);
+        ImgToLoad = msg;
+        glbStatus.statusDone(msg + ' gefunden');
         (<any>$('#lightgallery')).lightGallery();
     });
-    glbStatus.statusStart('searching ...');
+    glbStatus.statusStart('Bilder werden gesucht...');
 }
 function btnSearchAlbum(elem) {
     ClearCount()
     var lgInst = new lg();
     var album = $(elem).attr('data-responsive');
+    overlayOpen();
     lgInst.lgClear('#tagslist');
     lgInst.lgClear('#albumlist');
     lgInst.lgFillAlbumImages('#lightgallery', album, function (msg) {
-        glbStatus.statusDone(msg);
+        ImgToLoad = msg;
+        glbStatus.statusDone(msg + ' gefunden');
         (<any>$('#lightgallery')).lightGallery();
     });
-    glbStatus.statusStart('searching ...');
+    glbStatus.statusStart('Bilder werden gesucht...');
 }
 function btnFolder_Click() {
     var lgInst = new lg();
@@ -41,7 +45,7 @@ function btnFolder_Click() {
     lgInst.lgFillAlbumList('#albumlist', function (msg) {
         glbStatus.statusDone(msg);
     });
-    glbStatus.statusStart('searching ...');
+    glbStatus.statusStart('Alben werden gesucht...');
 }
 function btnTags_Click() {
     var lgInst = new lg();
@@ -52,7 +56,7 @@ function btnTags_Click() {
     lgInst.lgFillTagList('#tagslist', tagid, function (msg) {
         glbStatus.statusDone(msg);
     });
-    glbStatus.statusStart('searching ...');
+    glbStatus.statusStart('Tags werden gesucht...');
 }
 function btnSearchTag_Click(elem) {
     var lgInst = new lg();
@@ -63,62 +67,66 @@ function btnSearchTag_Click(elem) {
         glbStatus.statusDone(msg);
 
     });
-    glbStatus.statusStart('searching ...');
+    glbStatus.statusStart('Tags werden gesucht...');
 }
 function btnShowTag_Click(elem) {
     ClearCount()
     var lgInst = new lg();
     var tagid = $(elem).attr('data-responsive');
     // this must be the previously selected id
-    document.getElementById("loadingOverlay").classList.remove('invisible');
-    document.getElementById("loadingOverlay").classList.add('visible');
+    overlayOpen();
     lgInst.lgClear('#albumlist');
     lgInst.lgClear('#tagslist');
     lgInst.lgFillTag('#lightgallery', tagid, function (msg) {
         ImgToLoad = msg;
-        glbStatus.statusDone(msg + ' found');
+        glbStatus.statusDone(msg + ' gefunden');
         (<any>$('#lightgallery')).lightGallery();
     });
-    glbStatus.statusStart('searching ...');
+    glbStatus.statusStart('Bilder werden gesucht...');
 }
 function cbOnLoad() {
     ImgLoaded++;
     ImgDone++;
-    document.getElementById("progressbarSuccess").style.width = ImgLoaded / ImgToLoad * 100 + "%";
+    if (ImgToLoad == 0) document.getElementById("progressbarError").style.width = ".1%";
+    else document.getElementById("progressbarSuccess").style.width = ImgLoaded / ImgToLoad * 100 + "%";
+    glbStatus.statusProgress(ImgLoaded, ImgErrored, ImgToLoad);
     if(ImgDone >= ImgToLoad) {
-        document.getElementById("loadingOverlay").classList.remove('visible');
-        document.getElementById("loadingOverlay").classList.add('invisible');
-        
+        overlayClose();
     }
 }
 
 function cbOnError() {
     ImgErrored++;
     ImgDone++;
-    document.getElementById("progressbarError").style.width = ImgErrored / ImgToLoad * 100 + "%";
+    if (ImgToLoad == 0) document.getElementById("progressbarError").style.width = ".1%";
+    else document.getElementById("progressbarError").style.width = ImgErrored / ImgToLoad * 100 + "%";
+    glbStatus.statusProgress(ImgLoaded, ImgErrored, ImgToLoad);
     if(ImgDone >= ImgToLoad) {
-        document.getElementById("loadingOverlay").classList.remove('visible');
-        document.getElementById("loadingOverlay").classList.add('invisible');
+        overlayClose();
     }
 }
 
 
 function ClearCount() {
     ImgToLoad = 0;
-    ImgErrored = 0;
+    ImgLoaded = 0;
     ImgErrored = 0;
     ImgDone = 0;
 }
 
 //delete if not needed anymore!!!!
 function btnTest() {
-    document.getElementById("loadingOverlay").classList.remove('invisible');
-    document.getElementById("loadingOverlay").classList.add('visible');
+    overlayOpen();
 }
 
 function overlayClose() {
     document.getElementById("loadingOverlay").classList.remove('visible');
     document.getElementById("loadingOverlay").classList.add('invisible');
+}
+
+function overlayOpen() {
+    document.getElementById("loadingOverlay").classList.remove('invisible');
+    document.getElementById("loadingOverlay").classList.add('visible');
 }
 
 var bFirstRun = true;
