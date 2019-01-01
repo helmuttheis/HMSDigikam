@@ -308,8 +308,8 @@ namespace HMSMB
                         " Count(t3.id) " + // 3
                         " from Tags as t1 " +
                         " left join Tags as t3 on t3.pid = t1.id " +
-                            " where t1.pid = " + tagid +
-                            " group by t1.name,t1.id,t1.pid";
+                        " where t1.pid = " + tagid +
+                        " group by t1.name,t1.id,t1.pid";
             ToLog("SQL=" + SQL);
             foreach (var row in db.Query(SQL))
             {
