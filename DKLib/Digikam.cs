@@ -270,6 +270,7 @@ namespace HMSMB
             string SQL = "";
             string useTagid = tagid;
             // while (!string.IsNullOrWhiteSpace(useTagid))
+#if false
             {
                 SQL = "select " +
                             " t2.id,  " +  // 0
@@ -299,6 +300,7 @@ namespace HMSMB
                     }
                 }
             }
+#endif
             SQL = "select " +
                         " t1.id,  " +  // 0
                         " t1.pid, " + // 1
