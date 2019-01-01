@@ -143,7 +143,7 @@ var lg = /** @class */ (function () {
                             '<div class="tag_preview" >' +
                             '<button onclick="btnShowTag_Click(this)" data-responsive="' + data_responsive + '">' + item.name + '</button>' +
                             '</div><div class= "tag_view ' + data_children + '" >' +
-                            '<button class="' + data_children + '" onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '">' + item.childcnt + ' Tags enzeigen &nbsp <i class= "fas fa-arrow-right"></i></button>' +
+                            '<button class="' + data_children + '" onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '" data-name="' + item.name + '">' + item.childcnt + ' Tags enzeigen &nbsp <i class= "fas fa-arrow-right"></i></button>' +
                             '</div> </li>');
                     });
                     cb(items.TotalRecordCount);
@@ -155,7 +155,6 @@ var lg = /** @class */ (function () {
         var $ulElem = $(selector);
         if ($ulElem) {
             $ulElem.empty();
-            ;
             $.getJSON("/tag?tagid=" + tagid, function (data) {
                 var items = data.json;
                 if (items.error) {
@@ -175,6 +174,20 @@ var lg = /** @class */ (function () {
                     });
                     cb(items.TotalRecordCount);
                 }
+            });
+        }
+    };
+    lg.prototype.lgFillBreadcrump = function (selector, bcArray) {
+        var $ulElem = $(selector);
+        if ($ulElem) {
+            $ulElem.empty();
+            $.each(bcArray, function (index, item) {
+                var breadcrumpName = item.name;
+                var breadcrumpArrow = '<div class="breadcrumpArrow">&gt;</div>';
+                if (index > 0) {
+                    $ulElem.append(breadcrumpArrow);
+                }
+                $ulElem.append('<div class="breadcrump">' + breadcrumpName + '</div>');
             });
         }
     };

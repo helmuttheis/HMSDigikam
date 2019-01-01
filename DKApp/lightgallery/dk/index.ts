@@ -5,18 +5,21 @@ var ImgToLoad = 0;
 var ImgLoaded = 0;
 var ImgErrored = 0;
 var ImgDone = 0;
+var funcarray: Breadcrump[] = [];
 
 function btnClear_Click() {
     var lgInst = new lg();
     lgInst.lgClear('#albumlist');
     lgInst.lgClear('#lightgallery');
     lgInst.lgClear('#tagslist');
+    lgInst.lgClear('#breadcrumps');
 }
 function btnSearch_Click() {
     ClearCount()
     var lgInst = new lg();
     overlayOpen();
     lgInst.lgClear('#albumlist');
+    lgInst.lgClear('#breadcrumps');
     lgInst.lgFillImages('#lightgallery', '#tbSearch', function (msg) {
         ImgToLoad = msg;
         glbStatus.statusDone(msg + ' gefunden');
@@ -31,6 +34,7 @@ function btnSearchAlbum(elem) {
     overlayOpen();
     lgInst.lgClear('#tagslist');
     lgInst.lgClear('#albumlist');
+    lgInst.lgClear('#breadcrumps');
     lgInst.lgFillAlbumImages('#lightgallery', album, function (msg) {
         ImgToLoad = msg;
         glbStatus.statusDone(msg + ' gefunden');
@@ -42,6 +46,7 @@ function btnFolder_Click() {
     var lgInst = new lg();
     lgInst.lgClear('#lightgallery');
     lgInst.lgClear('#tagslist');
+    lgInst.lgClear('#breadcrumps');
     lgInst.lgFillAlbumList('#albumlist', function (msg) {
         glbStatus.statusDone(msg);
     });
@@ -50,9 +55,11 @@ function btnFolder_Click() {
 function btnTags_Click() {
     var lgInst = new lg();
     var tagid = "0";
+    funcarray = [];
     // this must be the previously selected id
     lgInst.lgClear('#albumlist');
     lgInst.lgClear('#lightgallery');
+    lgInst.lgClear('#breadcrumps');
     lgInst.lgFillTagList('#tagslist', tagid, function (msg) {
         glbStatus.statusDone(msg);
     });
@@ -60,9 +67,22 @@ function btnTags_Click() {
 }
 function btnSearchTag_Click(elem) {
     var lgInst = new lg();
+    lgInst.lgClear('#breadcrumps');
+    var nb: Breadcrump = {
+        name: $(elem).attr('data-name'), func: () => { btnSearchTag(elem) }};
+    funcarray.push(nb);
+    //var BC = funcarray.pop();
+    //BC.func();
+    lgInst.lgFillBreadcrump('#breadcrumps', funcarray);
+    funcarray[funcarray.length - 1].func();
+    //btnSearchTag(elem);
+}
+function btnSearchTag(elem) {
+    var lgInst = new lg();
     var tagid = $(elem).attr('data-responsive');
     // this must be the previously selected id
     lgInst.lgClear('#lightgallery');
+    lgInst.lgClear('#breadcrumps');
     lgInst.lgFillTagList('#tagslist', tagid, function (msg) {
         glbStatus.statusDone(msg);
 
@@ -77,6 +97,7 @@ function btnShowTag_Click(elem) {
     overlayOpen();
     lgInst.lgClear('#albumlist');
     lgInst.lgClear('#tagslist');
+    lgInst.lgClear('#breadcrumps');
     lgInst.lgFillTag('#lightgallery', tagid, function (msg) {
         ImgToLoad = msg;
         glbStatus.statusDone(msg + ' gefunden');
@@ -153,3 +174,8 @@ $(document).ready(function () {
     }
 
 });
+
+interface Breadcrump {
+    name: string,
+    func: any
+}
