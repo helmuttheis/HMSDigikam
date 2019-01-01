@@ -131,6 +131,10 @@ var lg = /** @class */ (function () {
                         var data_src = href;
                         var data_sub_html = "<h4>" + item.name + "</h4>";
                         var data_image = "https://via.placeholder.com/240x160/262626";
+                        var data_children = "";
+                        if (item.childcnt == 0) {
+                            data_children = "invisible";
+                        }
                         /* $ulElem.append('<li class="" data-responsive="' + data_responsive + '"  data-sub-html="' + data_sub_html + '" >' +
                             '<button onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '" >' + item.name + '</button>' +
                             '<button onclick="btnShowTag_Click(this)" data-responsive="' + data_responsive + '" ><i class="fas fa-arrow-right"></i></button></li>');
@@ -138,8 +142,8 @@ var lg = /** @class */ (function () {
                         $ulElem.append('<li class= "" data-responsive="' + data_responsive + '" data-sub-html="' + data_sub_html + '"style="background-image: url(' + data_image + ')">' +
                             '<div class="tag_preview" >' +
                             '<button onclick="btnShowTag_Click(this)" data-responsive="' + data_responsive + '">' + item.name + '</button>' +
-                            '</div><div class= "tag_view" >' +
-                            '<button onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '"> Tags enzeigen &nbsp <i class= "fas fa-arrow-right"></i></button>' +
+                            '</div><div class= "tag_view ' + data_children + '" >' +
+                            '<button class="' + data_children + '" onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '">' + item.childcnt + ' Tags enzeigen &nbsp <i class= "fas fa-arrow-right"></i></button>' +
                             '</div> </li>');
                     });
                     cb(items.TotalRecordCount);
