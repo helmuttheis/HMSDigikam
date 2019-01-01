@@ -270,6 +270,7 @@ namespace HMSMB
             string SQL = "";
             string useTagid = tagid;
             // while (!string.IsNullOrWhiteSpace(useTagid))
+#if false
             {
                 SQL = "select " +
                             " t2.id,  " +  // 0
@@ -292,12 +293,14 @@ namespace HMSMB
                         {
                             id = row[0].ToString(),
                             pid = row[1].ToString(),
-                            name = row[2].ToString()
+                            name = row[2].ToString(),
+                            childcnt = row[3].ToString()
                         });
                         useTagid = row[1].ToString();
                     }
                 }
             }
+#endif
             SQL = "select " +
                         " t1.id,  " +  // 0
                         " t1.pid, " + // 1
@@ -305,8 +308,8 @@ namespace HMSMB
                         " Count(t3.id) " + // 3
                         " from Tags as t1 " +
                         " left join Tags as t3 on t3.pid = t1.id " +
-                            " where t1.pid = " + tagid +
-                            " group by t1.name,t1.id,t1.pid";
+                        " where t1.pid = " + tagid +
+                        " group by t1.name,t1.id,t1.pid";
             ToLog("SQL=" + SQL);
             foreach (var row in db.Query(SQL))
             {
