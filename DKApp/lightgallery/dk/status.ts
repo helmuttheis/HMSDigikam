@@ -11,6 +11,7 @@ class log {
     statusDone(msg: string) {
         $('#status').text(msg);
         $('#overlayStatus').text(msg);
+        $('#PicCnt').text(msg);
     }
     statusProgress(current, error, target) {
         if (error > 0) {

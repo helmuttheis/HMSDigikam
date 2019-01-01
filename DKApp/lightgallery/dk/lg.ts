@@ -151,8 +151,10 @@ class lg {
                         var data_sub_html = "<h4>" + item.name + "</h4>";
                         var data_image = "https://via.placeholder.com/240x160/262626";
                         var data_children = "";
+                        var data_name = item.name + '(' + item.childcnt + ')';
                         if (item.childcnt == 0) {
-                            data_children = "invisible"
+                            data_children = "invisible";
+                            data_name = item.name;
                         }
 
                         /* $ulElem.append('<li class="" data-responsive="' + data_responsive + '"  data-sub-html="' + data_sub_html + '" >' +
@@ -162,9 +164,9 @@ class lg {
 
                         $ulElem.append('<li class= "" data-responsive="' + data_responsive + '" data-sub-html="' + data_sub_html + '"style="background-image: url(' + data_image + ')">' + 
                             '<div class="tag_preview" >' +
-                            '<button onclick="btnShowTag_Click(this)" data-responsive="' + data_responsive + '">' + item.name + '</button>' + 
+                            '<button onclick="btnShowTag_Click(this)" data-responsive="' + data_responsive + '" data-name="' + data_name + '">' + item.name + '</button>' + 
                             '</div><div class= "tag_view ' + data_children + '" >' +
-                            '<button class="' + data_children + '" onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '" data-name="' + item.name + '">' + item.childcnt +  ' Tags enzeigen &nbsp <i class= "fas fa-arrow-right"></i></button>' +
+                            '<button class="' + data_children + '" onclick="btnSearchTag_Click(this)" data-responsive="' + data_responsive + '" data-name="' + data_name + '">' + item.childcnt +  ' Tags enzeigen &nbsp <i class= "fas fa-arrow-right"></i></button>' +
                             '</div> </li>'
                         );
                     });
@@ -206,18 +208,21 @@ class lg {
             });
         }
     }
-    lgFillBreadcrump(selector, bcArray: Breadcrump[]) {
+    lgFillbreadcrumb(selector, bcArray: breadcrumb[]) {
         var $ulElem = $(selector);
-
         if ($ulElem) {
             $ulElem.empty();
-            $.each(bcArray, function (index, item: Breadcrump) {
-                var breadcrumpName = item.name;
-                var breadcrumpArrow = '<div class="breadcrumpArrow">&gt;</div>';
+            $.each(bcArray, function (index, item: breadcrumb) {
+                var breadcrumbName = item.name;
+                var breadcrumbArrow = '<div class="breadcrumbArrow">&gt;</div>';
                 if (index > 0) {
-                    $ulElem.append(breadcrumpArrow);
+                    $ulElem.append(breadcrumbArrow);
                 }
-                $ulElem.append('<div class="breadcrump">' + breadcrumpName + '</div>');
+                /*var addSpan = "";
+                if (index == bcArray.length - 1) {
+                    addSpan = '<span id="PicCnt"></span>';
+                }*/
+                $ulElem.append('<div class="breadcrumb"><button onclick="btnBreadcrumb_Click(' + index + ')">' + breadcrumbName + '</button></div>');
 
             });
 

@@ -352,6 +352,40 @@ background-color: rgba(0, 0, 0, 0.5);
     font-size: 16px;
 }
 
+#breadcrumbs {
+    color: white;
+    height: 25px;
+    display: inline-flex;
+    justify-content: flex-start;
+}
+
+.breadcrumb {
+    padding: 0 5px;
+    color: white;
+}
+
+.breadcrumb > button {
+    color: rgba(255, 255, 255, .7);
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0;
+}
+
+.breadcrumb > button:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.breadcrumbArrow {
+    color: rgba(255, 255, 255, .7);
+    font-size: 14px;
+    padding-top: 2px;
+}
+
+#firstBreadcrumb {
+    display: inline-flex;
+}
+
 .home .demo-gallery {
     padding-bottom: 80px;
 }

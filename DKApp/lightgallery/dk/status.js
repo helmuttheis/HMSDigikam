@@ -9,6 +9,7 @@ var log = /** @class */ (function () {
     log.prototype.statusDone = function (msg) {
         $('#status').text(msg);
         $('#overlayStatus').text(msg);
+        $('#PicCnt').text(msg);
     };
     log.prototype.statusProgress = function (current, error, target) {
         if (error > 0) {

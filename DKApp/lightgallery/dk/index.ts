@@ -5,21 +5,21 @@ var ImgToLoad = 0;
 var ImgLoaded = 0;
 var ImgErrored = 0;
 var ImgDone = 0;
-var funcarray: Breadcrump[] = [];
+var funcarray: breadcrumb[] = [];
 
 function btnClear_Click() {
     var lgInst = new lg();
     lgInst.lgClear('#albumlist');
     lgInst.lgClear('#lightgallery');
     lgInst.lgClear('#tagslist');
-    lgInst.lgClear('#breadcrumps');
+    lgInst.lgClear('#breadcrumbs');
 }
 function btnSearch_Click() {
     ClearCount()
     var lgInst = new lg();
     overlayOpen();
     lgInst.lgClear('#albumlist');
-    lgInst.lgClear('#breadcrumps');
+    lgInst.lgClear('#breadcrumbs');
     lgInst.lgFillImages('#lightgallery', '#tbSearch', function (msg) {
         ImgToLoad = msg;
         glbStatus.statusDone(msg + ' gefunden');
@@ -34,7 +34,7 @@ function btnSearchAlbum(elem) {
     overlayOpen();
     lgInst.lgClear('#tagslist');
     lgInst.lgClear('#albumlist');
-    lgInst.lgClear('#breadcrumps');
+    lgInst.lgClear('#breadcrumbs');
     lgInst.lgFillAlbumImages('#lightgallery', album, function (msg) {
         ImgToLoad = msg;
         glbStatus.statusDone(msg + ' gefunden');
@@ -46,7 +46,7 @@ function btnFolder_Click() {
     var lgInst = new lg();
     lgInst.lgClear('#lightgallery');
     lgInst.lgClear('#tagslist');
-    lgInst.lgClear('#breadcrumps');
+    lgInst.lgClear('#breadcrumbs');
     lgInst.lgFillAlbumList('#albumlist', function (msg) {
         glbStatus.statusDone(msg);
     });
@@ -59,7 +59,7 @@ function btnTags_Click() {
     // this must be the previously selected id
     lgInst.lgClear('#albumlist');
     lgInst.lgClear('#lightgallery');
-    lgInst.lgClear('#breadcrumps');
+    lgInst.lgClear('#breadcrumbs');
     lgInst.lgFillTagList('#tagslist', tagid, function (msg) {
         glbStatus.statusDone(msg);
     });
@@ -67,22 +67,20 @@ function btnTags_Click() {
 }
 function btnSearchTag_Click(elem) {
     var lgInst = new lg();
-    lgInst.lgClear('#breadcrumps');
-    var nb: Breadcrump = {
+    lgInst.lgClear('#breadcrumbs');
+    lgInst.lgClear('#firstBreadcrumb');
+    var nb: breadcrumb = {
         name: $(elem).attr('data-name'), func: () => { btnSearchTag(elem) }};
     funcarray.push(nb);
-    //var BC = funcarray.pop();
-    //BC.func();
-    lgInst.lgFillBreadcrump('#breadcrumps', funcarray);
+    $('#firstBreadcrumb').append('<div class="breadcrumb"><button onclick="btnTags_Click()">Alles</button></div><div class="breadcrumbArrow">&gt;</div>');
+    lgInst.lgFillbreadcrumb('#breadcrumbs', funcarray);
     funcarray[funcarray.length - 1].func();
-    //btnSearchTag(elem);
 }
 function btnSearchTag(elem) {
     var lgInst = new lg();
     var tagid = $(elem).attr('data-responsive');
     // this must be the previously selected id
     lgInst.lgClear('#lightgallery');
-    lgInst.lgClear('#breadcrumps');
     lgInst.lgFillTagList('#tagslist', tagid, function (msg) {
         glbStatus.statusDone(msg);
 
@@ -90,6 +88,18 @@ function btnSearchTag(elem) {
     glbStatus.statusStart('Tags werden gesucht...');
 }
 function btnShowTag_Click(elem) {
+    var lgInst = new lg();
+    lgInst.lgClear('#breadcrumbs');
+    lgInst.lgClear('#firstBreadcrumb');
+    var nb: breadcrumb = {
+        name: $(elem).attr('data-name'), func: () => { btnShowTag(elem) }
+    };
+    funcarray.push(nb);
+    $('#firstBreadcrumb').append('<div class="breadcrumb"><button onclick="btnTags_Click()">Alles</button></div><div class="breadcrumbArrow">&gt;</div>');
+    lgInst.lgFillbreadcrumb('#breadcrumbs', funcarray);
+    funcarray[funcarray.length - 1].func();
+}
+function btnShowTag(elem) {
     ClearCount()
     var lgInst = new lg();
     var tagid = $(elem).attr('data-responsive');
@@ -97,13 +107,21 @@ function btnShowTag_Click(elem) {
     overlayOpen();
     lgInst.lgClear('#albumlist');
     lgInst.lgClear('#tagslist');
-    lgInst.lgClear('#breadcrumps');
     lgInst.lgFillTag('#lightgallery', tagid, function (msg) {
         ImgToLoad = msg;
         glbStatus.statusDone(msg + ' gefunden');
         (<any>$('#lightgallery')).lightGallery();
     });
     glbStatus.statusStart('Bilder werden gesucht...');
+}
+function btnBreadcrumb_Click(step) {
+    var lgInst = new lg();
+    lgInst.lgClear('#breadcrumbs');
+    lgInst.lgClear('#firstBreadcrumb');
+    funcarray = funcarray.slice(0, step + 1);
+    $('#firstBreadcrumb').append('<div class="breadcrumb"><button onclick="btnTags_Click()">Alles</button></div><div class="breadcrumbArrow">&gt;</div>');
+    lgInst.lgFillbreadcrumb('#breadcrumbs', funcarray);
+    funcarray[funcarray.length - 1].func();
 }
 function cbOnLoad() {
     ImgLoaded++;
@@ -175,7 +193,7 @@ $(document).ready(function () {
 
 });
 
-interface Breadcrump {
+interface breadcrumb {
     name: string,
     func: any
 }
