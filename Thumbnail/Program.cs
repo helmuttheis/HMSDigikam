@@ -124,9 +124,9 @@ namespace Thumbnail
                     {
                         Directory.CreateDirectory(outPath);
                     }
-                    int thumbWidth = (int)((160 * b.Width) / b.Height);
-                    int thumbHeight = 160;
-                    b.GetThumbnailImage(thumbWidth, thumbHeight, null, IntPtr.Zero).Save(outputFile,System.Drawing.Imaging.ImageFormat.Jpeg);
+                    int thumbWidth = (int)((320 * b.Width) / b.Height);
+                    int thumbHeight = 320;
+                    b.GetThumbnailImage(thumbWidth, thumbHeight, null, IntPtr.Zero).Save(outputFile, System.Drawing.Imaging.ImageFormat.Jpeg);
                 }
                 Console.WriteLine(outputFile);
             }

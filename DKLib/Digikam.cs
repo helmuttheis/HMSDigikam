@@ -306,7 +306,7 @@ namespace HMSMB
                         " from Tags as t1 " +
                         " left join Tags as t3 on t3.pid = t1.id " +
                             " where t1.pid = " + tagid +
-                            " group by t1.id,t1.pid,t1.name";
+                            " group by t1.name,t1.id,t1.pid";
             ToLog("SQL=" + SQL);
             foreach (var row in db.Query(SQL))
             {
@@ -322,6 +322,7 @@ namespace HMSMB
                 }
             }
             ToLog("TotalRecordCount=" + ret.Tags.Count);
+            ret.Tags.Sort((t1,t2) => t1.name.CompareTo(t2.name));
             ret.TotalRecordCount = ret.Tags.Count;
 
             return ret;
