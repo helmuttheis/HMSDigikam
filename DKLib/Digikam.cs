@@ -292,7 +292,8 @@ namespace HMSMB
                         {
                             id = row[0].ToString(),
                             pid = row[1].ToString(),
-                            name = row[2].ToString()
+                            name = row[2].ToString(),
+                            childcnt = row[3].ToString()
                         });
                         useTagid = row[1].ToString();
                     }
