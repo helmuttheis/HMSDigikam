@@ -49,7 +49,7 @@ var lg = /** @class */ (function () {
                         var src = thumb_name; // "img/thumb-4.jpg";
                         $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()" onerror="cbOnError()"></a></li>');
                     });
-                    cb(items.TotalRecordCount + ' found');
+                    cb(items.TotalRecordCount);
                 }
             });
         }
@@ -105,10 +105,10 @@ var lg = /** @class */ (function () {
                         var data_responsive = href; //  "img/4-375.jpg 375, img/4-480.jpg 480, img/4.jpg 800";
                         var data_src = href;
                         var data_sub_html = "<h4>" + item.RelativePath + "</h4><p> </p>";
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '"  data-sub-html="' + data_sub_html + '" >' +
-                            '<button onclick = "btnSearchAlbum(this)" data-responsive="' + data_responsive + '" > ' + data_responsive + ' </button></li> ');
+                        $ulElem.append('<li class="">' +
+                            '<button onclick = "btnSearchAlbum_Click(this)" data-responsive="' + data_responsive + '" data-name="' + data_responsive + '"> ' + data_responsive + ' </button></li> ');
                     });
-                    cb(items.TotalRecordCount + ' found');
+                    cb(items.TotalRecordCount);
                 }
             });
         }
@@ -130,7 +130,7 @@ var lg = /** @class */ (function () {
                         var data_responsive = href; //  "img/4-375.jpg 375, img/4-480.jpg 480, img/4.jpg 800";
                         var data_src = href;
                         var data_sub_html = "<h4>" + item.name + "</h4>";
-                        var data_image = "https://via.placeholder.com/240x160/262626";
+                        var data_image = "./img/placeholder.png";
                         var data_children = "";
                         var data_name = item.name + '(' + item.childcnt + ')';
                         if (item.childcnt == 0) {

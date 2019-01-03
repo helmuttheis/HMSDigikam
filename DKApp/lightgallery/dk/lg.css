@@ -359,6 +359,15 @@ background-color: rgba(0, 0, 0, 0.5);
     justify-content: flex-start;
 }
 
+.breadcrumb-container {
+    width: 100%;
+    color: white;
+    display: inline-flex;
+    justify-content: flex-start;
+    background-color: rgba(255, 255, 255, .05);
+    padding-left: 20px;
+}
+
 .breadcrumb {
     padding: 0 5px;
     color: white;
@@ -384,6 +393,7 @@ background-color: rgba(0, 0, 0, 0.5);
 
 #firstBreadcrumb {
     display: inline-flex;
+    height: 25px;
 }
 
 .home .demo-gallery {

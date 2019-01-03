@@ -8,32 +8,45 @@ var ImgDone = 0;
 var funcarray = [];
 function btnClear_Click() {
     var lgInst = new lg();
+    funcarray = [];
+    clearAll();
+}
+function clearAll() {
+    var lgInst = new lg();
     lgInst.lgClear('#albumlist');
     lgInst.lgClear('#lightgallery');
     lgInst.lgClear('#tagslist');
     lgInst.lgClear('#breadcrumbs');
+    lgInst.lgClear('#firstBreadcrumb');
 }
 function btnSearch_Click() {
     ClearCount();
     var lgInst = new lg();
     overlayOpen();
-    lgInst.lgClear('#albumlist');
-    lgInst.lgClear('#breadcrumbs');
+    clearAll();
     lgInst.lgFillImages('#lightgallery', '#tbSearch', function (msg) {
         ImgToLoad = msg;
-        glbStatus.statusDone(msg + ' gefunden');
+        glbStatus.statusDone(msg + ' Bilder');
         $('#lightgallery').lightGallery();
     });
     glbStatus.statusStart('Bilder werden gesucht...');
+}
+function btnSearchAlbum_Click(elem) {
+    var lgInst = new lg();
+    clearAll();
+    var nb = {
+        name: $(elem).attr('data-name'), func: function () { btnSearchAlbum(elem); }
+    };
+    funcarray.push(nb);
+    $('#firstBreadcrumb').append('<div class="breadcrumb"><button onclick="btnFolder_Click()">Alle Alben</button></div><div class="breadcrumbArrow">&gt;</div>');
+    lgInst.lgFillbreadcrumb('#breadcrumbs', funcarray);
+    funcarray[funcarray.length - 1].func();
 }
 function btnSearchAlbum(elem) {
     ClearCount();
     var lgInst = new lg();
     var album = $(elem).attr('data-responsive');
     overlayOpen();
-    lgInst.lgClear('#tagslist');
-    lgInst.lgClear('#albumlist');
-    lgInst.lgClear('#breadcrumbs');
     lgInst.lgFillAlbumImages('#lightgallery', album, function (msg) {
         ImgToLoad = msg;
         glbStatus.statusDone(msg + ' gefunden');
@@ -43,9 +56,9 @@ function btnSearchAlbum(elem) {
 }
 function btnFolder_Click() {
     var lgInst = new lg();
-    lgInst.lgClear('#lightgallery');
-    lgInst.lgClear('#tagslist');
-    lgInst.lgClear('#breadcrumbs');
+    clearAll();
+    funcarray = [];
+    $('#firstBreadcrumb').append('<div class="breadcrumb"><button onclick="btnFolder_Click()">Alle Alben</button></div><div class="breadcrumbArrow">&gt;</div>');
     lgInst.lgFillAlbumList('#albumlist', function (msg) {
         glbStatus.statusDone(msg);
     });
@@ -56,9 +69,8 @@ function btnTags_Click() {
     var tagid = "0";
     funcarray = [];
     // this must be the previously selected id
-    lgInst.lgClear('#albumlist');
-    lgInst.lgClear('#lightgallery');
-    lgInst.lgClear('#breadcrumbs');
+    clearAll();
+    $('#firstBreadcrumb').append('<div class="breadcrumb"><button onclick="btnTags_Click()">Alle Tags</button></div><div class="breadcrumbArrow">&gt;</div>');
     lgInst.lgFillTagList('#tagslist', tagid, function (msg) {
         glbStatus.statusDone(msg);
     });
@@ -66,13 +78,12 @@ function btnTags_Click() {
 }
 function btnSearchTag_Click(elem) {
     var lgInst = new lg();
-    lgInst.lgClear('#breadcrumbs');
-    lgInst.lgClear('#firstBreadcrumb');
+    clearAll();
     var nb = {
         name: $(elem).attr('data-name'), func: function () { btnSearchTag(elem); }
     };
     funcarray.push(nb);
-    $('#firstBreadcrumb').append('<div class="breadcrumb"><button onclick="btnTags_Click()">Alles</button></div><div class="breadcrumbArrow">&gt;</div>');
+    $('#firstBreadcrumb').append('<div class="breadcrumb"><button onclick="btnTags_Click()">Alle Tags</button></div><div class="breadcrumbArrow">&gt;</div>');
     lgInst.lgFillbreadcrumb('#breadcrumbs', funcarray);
     funcarray[funcarray.length - 1].func();
 }
@@ -88,13 +99,12 @@ function btnSearchTag(elem) {
 }
 function btnShowTag_Click(elem) {
     var lgInst = new lg();
-    lgInst.lgClear('#breadcrumbs');
-    lgInst.lgClear('#firstBreadcrumb');
+    clearAll();
     var nb = {
         name: $(elem).attr('data-name'), func: function () { btnShowTag(elem); }
     };
     funcarray.push(nb);
-    $('#firstBreadcrumb').append('<div class="breadcrumb"><button onclick="btnTags_Click()">Alles</button></div><div class="breadcrumbArrow">&gt;</div>');
+    $('#firstBreadcrumb').append('<div class="breadcrumb"><button onclick="btnTags_Click()">Alle Tags</button></div><div class="breadcrumbArrow">&gt;</div>');
     lgInst.lgFillbreadcrumb('#breadcrumbs', funcarray);
     funcarray[funcarray.length - 1].func();
 }
@@ -104,8 +114,6 @@ function btnShowTag(elem) {
     var tagid = $(elem).attr('data-responsive');
     // this must be the previously selected id
     overlayOpen();
-    lgInst.lgClear('#albumlist');
-    lgInst.lgClear('#tagslist');
     lgInst.lgFillTag('#lightgallery', tagid, function (msg) {
         ImgToLoad = msg;
         glbStatus.statusDone(msg + ' gefunden');
@@ -115,10 +123,11 @@ function btnShowTag(elem) {
 }
 function btnBreadcrumb_Click(step) {
     var lgInst = new lg();
+    lgInst.lgClear('#albumlist');
+    lgInst.lgClear('#lightgallery');
+    lgInst.lgClear('#tagslist');
     lgInst.lgClear('#breadcrumbs');
-    lgInst.lgClear('#firstBreadcrumb');
     funcarray = funcarray.slice(0, step + 1);
-    $('#firstBreadcrumb').append('<div class="breadcrumb"><button onclick="btnTags_Click()">Alles</button></div><div class="breadcrumbArrow">&gt;</div>');
     lgInst.lgFillbreadcrumb('#breadcrumbs', funcarray);
     funcarray[funcarray.length - 1].func();
 }
