@@ -85,6 +85,7 @@
     <Content Include="lightgallery\dist\js\lightgallery.js" />
     <Content Include="lightgallery\dist\js\lightgallery.min.js" />
     <Content Include="lightgallery\dk\EmbyStyle.css" />
+    <Content Include="lightgallery\dk\img\baseline-search-24px-white.png" />
     <Content Include="lightgallery\dk\img\baseline-search-24px-white.svg" />
     <Content Include="lightgallery\dk\img\logowhite.png" />
     <Content Include="lightgallery\dk\img\placeholder.png" />

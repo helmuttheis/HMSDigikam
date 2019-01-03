@@ -178,7 +178,8 @@ namespace HMSMB
                 sb.Append("\"AlbumId\":\"" + AlbumId + "\",");
                 sb.Append("\"Width\":" + Width + ",");
                 sb.Append("\"Height\":" + Height + ",");
-                sb.Append("\"PrimaryImageAspectRatio\":\"" + Width / Height + "\",");
+                if (Height == 0) sb.Append("\"PrimaryImageAspectRatio\":\"" + 0 + "\",");
+                else sb.Append("\"PrimaryImageAspectRatio\":\"" + Width / Height + "\",");
                 sb.Append("\"ProductionYear\":\"" + ProductionYear + "\"");
 
 
