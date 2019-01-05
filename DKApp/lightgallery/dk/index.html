@@ -3,17 +3,18 @@
 <head>
     <title>V48 DigiKam</title>
     <link href="../dist/css/lightgallery.css" rel="stylesheet">
-    <link href="../lib/bootstrap-grid.min.css" rel="stylesheet">
     <link href="./lg.css" rel="stylesheet">
     <link href="./EmbyStyle.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="./spinner.css" rel="stylesheet">
+    <link href="css/contextMenu.css" rel="stylesheet">
 
     <script src="./jquery.js"></script>
     <script src="../lib/bootstrap.bundle.min.js"></script>
     <script src="./lg.js"></script>
     <script src="./status.js"></script>
     <script src="./index.js"></script>
+    <script src="./contextMenu.js"></script>
 </head>
 <body>
     <div class="header">
@@ -108,6 +109,26 @@
             <ul id="tagslist" class="list-unstyled"></ul>
         </div>
     </div>
+
+    <nav id="context-menu" class="context-menu">
+        <ul class="context-menu__items">
+            <li class="context-menu__item dropdown">
+                <a href="#" class="context-menu__link">
+                    <i class="fas fa-exclamation" style="padding-right: 12px"></i> Fehler melden <i class="fas fa-angle-right" style="float:right"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#" class="context-menu__link">Thumbnail Auflösung</a>
+                    <a href="#" class="context-menu__link">Bild Drehung</a>
+                    <a href="#" class="context-menu__link">Manuelle Eingabe</a>
+                </div>
+            </li>
+            <li class="context-menu__item">
+                <a href="#" class="context-menu__link">
+                    <i class="fa fa-edit"></i> Edit Task
+                </a>
+            </li>
+        </ul>
+    </nav>
 
     <script src="../lib/picturefill.min.js"></script>
     <script src="../dist/js/lightgallery-all.min.js"></script>

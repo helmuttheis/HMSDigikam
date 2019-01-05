@@ -47,7 +47,7 @@ var lg = /** @class */ (function () {
                         var data_src = img_name;
                         var data_sub_html = "<h4>" + item.Image + "</h4>"; // <p></p>";
                         var src = thumb_name; // "img/thumb-4.jpg";
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()" onerror="cbOnError()"></a></li>');
+                        $ulElem.append('<li class="image" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()" onerror="cbOnError()"></a></li>');
                     });
                     cb(items.TotalRecordCount);
                 }
@@ -76,7 +76,7 @@ var lg = /** @class */ (function () {
                         var data_src = img_name;
                         var data_sub_html = "<h4>" + item.Image + "</h4>"; // <p></p>";
                         var src = thumb_name; // "img/thumb-4.jpg";
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '">' +
+                        $ulElem.append('<li class="image" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '">' +
                             '<a href=""> <img class="img-responsive" src="' + src + '" onload="cbOnLoad()" onerror="cbOnError()"> </a></li > ');
                         that.progressStep(nr, items.TotalRecordCount);
                         if (nr >= items.TotalRecordCount) {
@@ -106,7 +106,7 @@ var lg = /** @class */ (function () {
                         var data_src = href;
                         var data_sub_html = "<h4>" + item.RelativePath + "</h4><p> </p>";
                         $ulElem.append('<li class="">' +
-                            '<button onclick = "btnSearchAlbum_Click(this)" data-responsive="' + data_responsive + '" data-name="' + data_responsive + '"> ' + data_responsive + ' </button></li> ');
+                            '<button onclick="btnSearchAlbum_Click(this)" data-responsive="' + data_responsive + '" data-name="' + data_responsive + '"> ' + data_responsive + ' </button></li> ');
                     });
                     cb(items.TotalRecordCount);
                 }
@@ -172,7 +172,7 @@ var lg = /** @class */ (function () {
                         var data_src = img_name;
                         var data_sub_html = "<h4>" + item.Image + "</h4>"; // <p></p>";
                         var src = thumb_name;
-                        $ulElem.append('<li class="" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()" onerror="cbOnError()"></a></li>');
+                        $ulElem.append('<li class="image" data-responsive="' + data_responsive + '" data-src="' + data_src + '" data-sub-html="' + data_sub_html + '"><a href=""><img class="img-responsive" src="' + src + '" onload="cbOnLoad()" onerror="cbOnError()"></a></li>');
                     });
                     cb(items.TotalRecordCount);
                 }

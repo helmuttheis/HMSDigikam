@@ -84,6 +84,8 @@
     <Content Include="lightgallery\dist\js\lightgallery-all.min.js" />
     <Content Include="lightgallery\dist\js\lightgallery.js" />
     <Content Include="lightgallery\dist\js\lightgallery.min.js" />
+    <Content Include="lightgallery\dk\contextMenu.js" />
+    <Content Include="lightgallery\dk\css\contextMenu.css" />
     <Content Include="lightgallery\dk\EmbyStyle.css" />
     <Content Include="lightgallery\dk\img\baseline-search-24px-white.png" />
     <Content Include="lightgallery\dk\img\baseline-search-24px-white.svg" />
@@ -104,9 +106,16 @@
     <Content Include="lightgallery\lib\picturefill.min.js" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="lightgallery\dk\contextMenu.ts" />
     <TypeScriptCompile Include="lightgallery\dk\index.ts" />
     <TypeScriptCompile Include="lightgallery\dk\lg.ts" />
     <TypeScriptCompile Include="lightgallery\dk\status.ts" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties tsconfig_1json__JSONSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

@@ -1,0 +1,63 @@
+﻿.context-menu {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    min-width: 210px;
+    background-color: rgba(38,38,38,1);
+    border: solid 1px rgba(55,55,55,1);
+    border-radius: 5px;
+    box-shadow: 3px 3px 2px rgba(0,0,0,.7);
+    overflow: hidden;
+    padding-top: 5px;
+}
+
+.context-menu--active {
+    display: block;
+}
+
+.context-menu__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.context-menu__item {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.context-menu__link {
+    display: block;
+    padding: 4px 12px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+}
+
+.context-menu__link:hover {
+    background-color: rgba(255,255,255,0.05);
+}
+
+.dropdown-content {
+    display: none;
+    position: relative;
+    min-width: 200px;
+    background-color: rgba(38,38,38,1);
+    border-bottom: solid 1px rgba(55,55,55,1);
+    border-top: solid 1px rgba(55,55,55,1);
+    box-shadow: inset 0px 11px 8px -10px rgba(0,0,0,.5), inset 0px -11px 8px -10px rgba(0,0,0,.5);
+    overflow: hidden;
+    padding: 5px 0;
+    z-index: 9;
+}
+
+.fa-angle-right {
+    transition: .3s transform;
+}
+
+.dropdown:hover .fa-angle-right {
+    transform: rotate(90deg);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
